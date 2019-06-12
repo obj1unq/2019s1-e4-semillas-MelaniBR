@@ -1,0 +1,48 @@
+import parcelas.*
+import semillas.*
+	describe "test inta"{	
+		const soja1 = new Soja(altura = 1.5, anioDeObtencion = 2009)
+		const parcela1 = new Parcela(ancho = 20 , largo = 4, solQueRecibe= 9,tipo =parcelasEcologicas)	
+		const parcela2 = new Parcela(ancho = 10 , largo = 5 , solQueRecibe= 5 ,tipo =parcelasIndustriales )
+		const menta1 = new Menta(altura = 1 ,anioDeObtencion = 2006 )
+		const hierbabuena1 = new Hierbabuena(altura = 1,anioDeObtencion= 2006)
+		
+		
+
+fixture {
+	parcela2.plantar(menta1)
+	parcela2.plantar(menta1)
+	parcela1.plantar(soja1)
+	parcela1.plantar(soja1)
+	parcela1.plantar(soja1)
+	parcela1.plantar(soja1)
+	parcela1.plantar(soja1)
+	inta.agregar(parcela1)
+	inta.agregar(parcela2)
+	}		
+
+test " suma total de plantas en Inta"{
+	assert.equals(7,inta.sumaTotalPlantas())
+	}
+test "cant de parcelas en inta"{
+	assert.equals(2,inta.cantDeParcelas())
+	}
+test "Promedio de Plantas por parcela "{
+	assert.equals(3.5,inta.promedioDePlantasPorParcela())
+	}
+test " Parcelas con mas de 4 plantas plantadas"{
+	assert.equals([parcela1],inta.parcelasConMasDe4())
+	}
+test "la parcela mas autosusentable"{
+	assert.equals( parcela1,inta.masAutosustentable())
+	}
+test " porcentaje de parcela1"{
+	assert.equals(100,parcela1.porcentajeDeAsociadas())
+	}
+test "soja1 se asocia bien a parcela1  "{
+	assert.that (parcela1.seAsociaBien(soja1))
+	}
+test "menta1 se asocia bien parcela2"{
+	assert.notThat(parcela2.seAsociaBien(menta1))
+	}
+}
