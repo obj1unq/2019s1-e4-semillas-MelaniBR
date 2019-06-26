@@ -1,0 +1,60 @@
+import semillas.*
+describe " Test de semillas"{
+		const menta1 = new Menta(altura = 1 ,anioDeObtencion = 2006 ) 
+		const menta2 = new Menta(altura = 0.3 ,anioDeObtencion = 2007 )
+		const soja1 = new Soja(altura = 0.6, anioDeObtencion = 2009)
+ 		const quinoa1 = new Quinoa ( altura = 1,anioDeObtencion = 2010, horasAlSolTolerables = 12 ) 
+ 		const quinoa2 = new Quinoa ( altura = 2,anioDeObtencion = 2001, horasAlSolTolerables = 9 ) 
+ 		const hierbabuena1 = new Hierbabuena(altura = 1,anioDeObtencion= 2006)
+ 		const hierbabuena2 = new Hierbabuena(altura = 0.3,anioDeObtencion= 2007)
+		const sojaTransgenica1 = new SojaTransgenica(altura = 1 , anioDeObtencion = 2007)
+ //Menta		
+test " Menta espacio que ocupa"{
+	assert.equals(3,menta1.espacioQueOcupa())
+	}
+test " Menta1 Da semillas" {
+	assert.that(menta1.daSemillas())
+	}	
+test "Menta2 espacio que ocupa "{
+	assert.equals(0.9,menta2.espacioQueOcupa())
+	}	
+test " Menta2 da semillas"{
+	assert.notThat(menta2.daSemillas())
+	}	
+ //Soja 
+test "Tolerancia a Sol de soja1 "{
+	assert.equals(7,soja1.horasAlSolTolerables())
+	}
+test " No da semillas soja"{
+	assert.notThat(soja1.daSemillas())
+	}
+test "Espacio que ocupa soja1"{
+	assert.equals(0.3,soja1.espacioQueOcupa())
+	}
+// Quinoa
+test "Horas al sol tolerabes para quinoa1"{
+	assert.equals(12,quinoa1.horasAlSolTolerables())
+	}
+test "Horas al sol tolerables para quinoa2"{
+	assert.equals(9,quinoa2.horasAlSolTolerables())
+	}
+test"Quinoa1 da semillas"{
+	assert.that(quinoa1.daSemillas())
+	}
+test"Quinoa2 da semillas"{
+	assert.that(quinoa2.daSemillas())
+	}
+// HierbaBuena 
+test "El espacio que ocupa hierbabuena1 es el doble de menta1 aunque tenga la misma altura "{
+	assert.equals(menta1.espacioQueOcupa()*2,hierbabuena1.espacioQueOcupa())
+	}
+test "El espacio que ocupa hierbabuena2 es el doble de menta2 aunque tenga la misma altura "{
+	assert.equals(menta2.espacioQueOcupa()*2,hierbabuena2.espacioQueOcupa())
+	}
+// Soja Transgenica 
+test "la soja trangenica nunca tiene semillas"{
+	assert.notThat(sojaTransgenica1.daSemillas())
+	}
+
+
+}

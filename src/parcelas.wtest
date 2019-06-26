@@ -1,0 +1,74 @@
+import parcelas.*
+import semillas.*
+describe " Test de Parcelas "{
+		const soja1 = new Soja(altura = 1.5, anioDeObtencion = 2009)
+		const parcela1 = new Parcela(ancho = 20 , largo = 1, solQueRecibe= 8,tipo =parcelasEcologicas)	
+		const parcela2 = new Parcela(ancho = 5 , largo = 1 , solQueRecibe= 9 ,tipo =parcelasEcologicas )
+		const menta1 = new Menta(altura = 1 ,anioDeObtencion = 2006 )
+		const hierbabuena1 = new Hierbabuena(altura = 1,anioDeObtencion= 2006)
+		const quinoa1 = new Quinoa ( altura = 1,anioDeObtencion = 2010, horasAlSolTolerables = 12 )
+		const sojaTransgenica1 = new SojaTransgenica(altura = 1 , anioDeObtencion = 2007)
+fixture{
+	
+	parcela1.plantar(soja1)
+	parcela1.plantar(soja1)
+	parcela1.plantar(soja1)
+	parcela1.plantar(soja1)
+}	
+test "superficie de Parcela"{
+	assert.equals(20 , parcela1.superficie())
+	}		
+test "maximo de plantas que tolera parcela"{
+	assert.equals(4,parcela1.maximoDePlantas())
+	}	
+test "No se puede agregar mas plantas a Parcela"{
+	assert.throwsExceptionWithMessage("Se supero el maximo de Plantas posibles en parcela",{parcela1.plantar(soja1)})
+	}	
+test "No  tiene complicaciones "{
+	assert.notThat(parcela1.complicaciones())
+	}
+test "No se puede agregar menta1 a Parcela1 supero sus horas al sol tolerables "{
+ 	assert.throwsExceptionWithMessage("Supero su cant de hora al sol",{parcela2.plantar(menta1)})
+	}
+
+
+
+// parcela ideal 
+//Soja
+test " Parcela1 no es ideal para soja1 "{
+	assert.notThat(soja1.esIdeal(parcela1))	
+	}	
+test "Parcela2 es ideal para soja1 "{
+	assert.that(soja1.esIdeal(parcela2))
+	}
+//MENTA
+test "Parcela1 es ideal para la menta1 "{
+	assert.that(menta1.esIdeal(parcela1))
+	}
+test "Parcela2 no es ideal para la menta1"{
+	assert.notThat(menta1.esIdeal(parcela2))
+	}
+//HIERBABUENA 
+// es igual a menta
+test "Parcela1 es ideal para la hierbabuena1 "{
+	assert.that(hierbabuena1.esIdeal(parcela1))
+	}
+test "Parcela2 no es ideal para la herbabuena1"{
+	assert.notThat(hierbabuena1.esIdeal(parcela2))
+	}
+//Qunioa 
+test "Parcela1 no es ideal para la quinoa"{
+	assert.notThat(quinoa1.esIdeal(parcela1))
+	}
+test"Parcela2 es ideal para la quinoa"{
+	assert.that(quinoa1.esIdeal(parcela2))
+	}
+//Soja transgenica 
+test " parcela1 no es ideal para la soja transgenica "{
+	assert.notThat(sojaTransgenica1.esIdeal(parcela1))
+	}
+test"Parcela2 es ideal para la soja transgenica"{
+	assert.that(sojaTransgenica1.esIdeal(parcela2))
+	}
+}
+
